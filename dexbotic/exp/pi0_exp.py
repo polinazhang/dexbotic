@@ -330,7 +330,7 @@ class Pi0InferenceConfig(Config):
         self.app.run(host="0.0.0.0", port=self.port, debug=False, threaded=False)
 
     def _initialize_inference(self) -> None:
-        ### Enable loading from a custom path during inference; previously, setting self.model_name_or_path had no effect on inference mode
+        ### Enable loading from a custom path during inference; previously, there are no supported ways for setting self.model_name_or_path for Pi0 Inference
         override = os.environ.get("DEXBOTIC_PI0_MODEL_PATH")
         if override:
             logger.info(
