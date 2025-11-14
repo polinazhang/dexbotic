@@ -138,7 +138,7 @@ class Pi0TokenizerConfig(_Pi0TokenizerConfig):
 @dataclass
 class Pi0InferenceConfig(_Pi0InferenceConfig):
     model_name_or_path: Optional[str] = field(
-        default="./user_checkpoints/dexbotic/libero_all_pi0/all-{datetime.now().strftime('%m%d')}"
+        default=f"./user_checkpoints/dexbotic/libero_all_pi0/all-{datetime.now().strftime('%m%d')}"
     )
     port: int = field(default=7891)
     save_image: bool = field(default=False)

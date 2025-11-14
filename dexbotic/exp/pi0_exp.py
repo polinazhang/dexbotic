@@ -330,6 +330,15 @@ class Pi0InferenceConfig(Config):
         self.app.run(host="0.0.0.0", port=self.port, debug=False, threaded=False)
 
     def _initialize_inference(self) -> None:
+        ### Enable loading from a custom path during inference; previously, setting self.model_name_or_path had no effect on inference mode
+        override = os.environ.get("DEXBOTIC_PI0_MODEL_PATH")
+        if override:
+            logger.info(
+                "Overriding Pi0 checkpoint path via DEXBOTIC_PI0_MODEL_PATH=%s",
+                override,
+            )
+            self.model_name_or_path = override
+
         if self.norm_stats is None:
             norm_stats_file = os.path.join(self.model_name_or_path, "norm_stats.json")
             self.norm_stats = self.read_normalization_stats(norm_stats_file)
